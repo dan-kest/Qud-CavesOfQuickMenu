@@ -1,0 +1,10 @@
+{
+	"id": "CavesOfQuickMenu",
+	"loadorder": 0,
+	"title": "{{Y|Caves of Qu}}{{y|ick Menu}}",
+	"description": "{{Y|Press [{{W|?}}] or [{{W|F1}}] while in quick menu for help.}}\n\nThis mod adds a new menu which acts as a hub to ties all status menus into one keymap.\n\nMain purpose of this mod is to free up some keymaps for non-numpad user or anyone who think their keymap is a mess.",
+	"tags": "UX",
+	"version": "1.0",
+	"author": "ZoraZ",
+	"previewImage": "CavesOfQuickMenu_Cover.png"
+}
