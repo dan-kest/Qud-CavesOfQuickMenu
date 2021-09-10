@@ -1,5 +1,10 @@
 namespace CavesOfQuickMenu.Configs
 {
+    public static class META
+    {
+        public const string MOD_NAME = "CavesOfQuickMenu";
+    }
+
     public static class QUD_SCREEN_CODE
     {
         public const int SKILLS    = 0;
@@ -20,15 +25,21 @@ namespace CavesOfQuickMenu.Configs
         public const int ABILITIES = 1002;
     }
 
+    public static class BOOK
+    {
+        private const string prefix = "Book_" + META.MOD_NAME + "_";
+        public const string STATUS_HELP = prefix + "Status_Help";
+    }
+
     public static class COMMAND
     {
-        private const string prefix = "Cmd_CavesOfQuickMenu_";
+        private const string prefix = "Cmd_" + META.MOD_NAME + "_";
         public const string OPEN_STATUS = prefix + "Open_Status";
     }
 
     public static class SCREEN
     {
-        private const string prefix = "CavesOfQuickMenu:";
+        private const string prefix = META.MOD_NAME + ":";
         public const string STATUS = prefix + "Status";
     }
 }

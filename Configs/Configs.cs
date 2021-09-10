@@ -2,7 +2,7 @@ namespace CavesOfQuickMenu.Configs
 {
     public static class TEXTURE_PATH
     {
-        public const string STATUS_QUICK_MENU_LEGACY = "CavesOfQuickMenu/StatusQuickMenu/Legacy/Slice {{1}}.png";
+        public const string STATUS_QUICK_MENU_LEGACY = META.MOD_NAME + "/StatusQuickMenu/Legacy/Slice {{1}}.png";
     }
 
     public static class QUICK_MENU_LEGACY_COORD

@@ -60,7 +60,7 @@ namespace XRL.UI
                     GameManager.Instance.PopGameView();
                     return QUICK_MENU_SCREEN_CODE.NONE;
                 }
-                // Skills and Powers
+                // Skills & Powers
                 if (cmd == "CmdMoveN")
                 {
                     Erase();
@@ -142,7 +142,7 @@ namespace XRL.UI
                 // Help
                 if (input == InputUtilities.GetShift(Keys.OemQuestion) || input == Keys.F1)
                 {
-
+                    BookUI.ShowBook(BOOK.STATUS_HELP, null);
                 }
             }
         }
