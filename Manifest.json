@@ -2,9 +2,9 @@
 	"id": "CavesOfQuickMenu",
 	"loadorder": 0,
 	"title": "{{Y|Caves of Qu}}{{y|ick Menu}}",
-	"description": "{{W|*App restart is required after approving or enabling this mod from disabled state.}}\n{{w|**To enter quick menu screen, assign a key to quick menu in [Quick Menu] section from Key Mapping.}}\n{{W|***This mod doesn't support new input manager (yet).}}\n\n{{Y|Press [{{W|F1}}] or [{{W|?}}] while in quick menu for help.}}\n\nCaves of Quick Menu (Yes it's a stupid name and I love it) adds a new menu which acts as a hub to ties all status screens into one keymap.\n\nMain purpose of this mod is to free up some keymaps for non-numpad user or anyone who think their keymap is a mess, aka me for both cases.",
+	"description": "{{Y|Press [{{W|F1}}] or [{{W|?}}] while in quick menu for help.}}\n\n{{W|* App restart is required after approving or enabling this mod from disabled state.}}\n{{w|* If you are experiencing dark color main menu after restart, as far as I'm concerned it's safe to ignore.}}\n{{W|* To access quick menu screen, assign a key to quick menu in [Quick Menu] section from Key Mapping.}}\n{{w|* This mod doesn't support new input manager (yet).}}\n\nThis mod adds a new menu which acts as a hub to ties all status screens into one keymap.\nMain purpose is to free up some keymaps for no-numpad user or anyone who think their keymap is a mess (aka me for both cases).",
 	"tags": "UX, Key Mapping",
-	"version": "0.9",
+	"version": "0.99",
 	"author": "ZoraZ",
 	"previewImage": "CavesOfQuickMenu_Cover.png"
 }

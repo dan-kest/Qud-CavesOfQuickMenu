@@ -4,13 +4,13 @@
     <page>
 Use {{W|Direction}} and {{W|Wait}} keys to navigate to other screens.
 
-List of available inputs:
+{{C|List of available inputs}}
 
 - {{W|Northwest}} {{K|-----------------}} Tinkering
 - {{W|North}} {{K|---------------------}} Skills and Powers
-  {{C|Modifier}}+{{W|North}} {{K|------------}} Abilities
+  {{M|Modifier}}+{{W|North}} {{K|------------}} Abilities
 - {{W|Northeast}} {{K|-----------------}} Character Sheet
-  {{C|Modifier}}+{{W|Northeast}} {{K|--------}} Active Effects
+  {{M|Modifier}}+{{W|Northeast}} {{K|--------}} Active Effects
 - {{W|West}} {{K|----------------------}} Journal
 - {{W|Wait}} {{K|----------------------}} Message History
 - {{W|East}} {{K|----------------------}} Inventory
@@ -18,7 +18,7 @@ List of available inputs:
 - {{W|South}} {{K|---------------------}} Factions (Reputation)
 - {{W|Southeast}} {{K|-----------------}} Equipment
 
-*{{C|Modifier}} key refers to {{W|Shift}} {{B|or}} {{W|Ctrl}} {{B|or}} {{W|Alt}} in any combination.
+* {{M|Modifier}} key refers to {{W|Shift}} {{B|or}} {{W|Ctrl}} {{B|or}} {{W|Alt}} in any combination.
 
 If you run into any issue please send me a message.
 You can find my contact on Steam workshop page.
