@@ -54,7 +54,7 @@ namespace XRL.UI
                 Keys input = Keyboard.getvk(false);
                 string cmd = LegacyKeyMapping.GetCommandFromKey(input);
                 // Exit
-                if (input == Keys.Escape || cmd == COMMAND.OPEN_STATUS)
+                if (input == Keys.Escape || cmd == COMMAND.OPEN_STATUS || cmd == "CmdCancel")
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
