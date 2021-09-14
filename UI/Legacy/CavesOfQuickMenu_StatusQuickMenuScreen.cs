@@ -124,16 +124,16 @@ namespace XRL.UI
                     return QUICK_MENU_SCREEN_CODE.MESSAGE;
                 }
                 // Abilities
-                Keys keyCmdMoveN = (Keys) LegacyKeyMapping.GetKeyFromCommand("CmdMoveN");
-                if (InputUtilities.HasAnyModifiers(input, keyCmdMoveN))
+                (int keyCmdMoveN1, int keyCmdMoveN2) = InputUtilities.GetAllKeysFromCommand("CmdMoveN");
+                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN2))
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
                     return QUICK_MENU_SCREEN_CODE.ABILITIES;
                 }
                 // Active Effects
-                Keys keyCmdMoveNE = (Keys) LegacyKeyMapping.GetKeyFromCommand("CmdMoveNE");
-                if (InputUtilities.HasAnyModifiers(input, keyCmdMoveNE))
+                (int keyCmdMoveNE1, int keyCmdMoveNE2) = InputUtilities.GetAllKeysFromCommand("CmdMoveNE");
+                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveNE1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveNE2))
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
