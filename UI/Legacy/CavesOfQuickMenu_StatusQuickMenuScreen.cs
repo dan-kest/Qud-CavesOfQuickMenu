@@ -125,7 +125,8 @@ namespace XRL.UI
                 }
                 // Abilities
                 (int keyCmdMoveN1, int keyCmdMoveN2) = InputUtilities.GetAllKeysFromCommand("CmdMoveN");
-                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN2))
+                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN2)
+                        || InputUtilities.HasAnyModifiers(input, Keys.Up))
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
