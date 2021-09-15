@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.99.1-hotfix.0] - 2021/09/15
+#### Hotifx
+- Fixed compatibility issue with current stable branch.
+
+#### Included Change
+- Added [Modifier] + [Up] check condition to open ability screen in addition to [Modifier] + [Num8].
+
 ## [0.99.1] - 2021/09/14
 #### New
 - Added CmdCancel (Cancel) keybind. User can now exit quick menu with cancel key.

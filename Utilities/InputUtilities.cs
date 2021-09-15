@@ -10,21 +10,40 @@ namespace CavesOfQuickMenu.Utilities
 		{
             int primary = 0;
             int secondary = 0;
-			foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair in LegacyKeyMapping.CurrentMap.PrimaryMapCommandToKeyLayer)
-			{
-				if (keyValuePair.Value.TryGetValue(Cmd, out primary))
-				{
-					break;
-				}
-			}
-			foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair2 in LegacyKeyMapping.CurrentMap.SecondaryMapCommandToKeyLayer)
-			{
-				if (keyValuePair2.Value.TryGetValue(Cmd, out secondary))
-				{
-					break;
-				}
-			}
+            LegacyKeyMapping.CurrentMap.PrimaryMapCommandToKey.TryGetValue(Cmd, out primary);
+			LegacyKeyMapping.CurrentMap.SecondaryMapCommandToKey.TryGetValue(Cmd, out secondary);
+            // TODO: Switch back to this once PrimaryMapCommandToKeyLayer becomes available on stable branch.
+            // *This works ONLY on beta branch as of time of writing (2.0.202.79 Beta - 2021/09/15)
+			// foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair in LegacyKeyMapping.CurrentMap.PrimaryMapCommandToKeyLayer)
+			// {
+			// 	if (keyValuePair.Value.TryGetValue(Cmd, out primary))
+			// 	{
+			// 		break;
+			// 	}
+			// }
+			// foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair2 in LegacyKeyMapping.CurrentMap.SecondaryMapCommandToKeyLayer)
+			// {
+			// 	if (keyValuePair2.Value.TryGetValue(Cmd, out secondary))
+			// 	{
+			// 		break;
+			// 	}
+			// }
 			return (primary, secondary);
+		}
+
+        public static int GetKeyFromCommand(string Cmd)
+		{
+			int result;
+			if (LegacyKeyMapping.CurrentMap.PrimaryMapCommandToKey.TryGetValue(Cmd, out result))
+			{
+				return result;
+			}
+			int result2;
+			if (LegacyKeyMapping.CurrentMap.SecondaryMapCommandToKey.TryGetValue(Cmd, out result2))
+			{
+				return result2;
+			}
+			return 0;
 		}
 
         private const int Shift = (int) Keys.Shift;
