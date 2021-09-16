@@ -4,8 +4,8 @@ using CavesOfQuickMenu.Configs;
 
 namespace XRL.UI
 {
-	public class CavesOfQuickMenu_StatusQuickMenuScreen
-	{
+    public class CavesOfQuickMenu_StatusQuickMenuScreen
+    {
         private const int X1 = QUICK_MENU_LEGACY_COORD.X1;
         private const int Y1 = QUICK_MENU_LEGACY_COORD.Y1;
         private const int X2 = QUICK_MENU_LEGACY_COORD.X2;
@@ -46,7 +46,7 @@ namespace XRL.UI
         {
             GameManager.Instance.PushGameView(SCREEN.STATUS);
             TextConsole.LoadScrapBuffers();
-			Buffer = TextConsole.ScrapBuffer;
+            Buffer = TextConsole.ScrapBuffer;
             OldBuffer = TextConsole.ScrapBuffer2;
             Draw();
             while (true)
@@ -147,5 +147,5 @@ namespace XRL.UI
                 }
             }
         }
-	}
+    }
 }
