@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.99.2] - 2021/12/20
+#### Fix
+- Revert change to stable branch compatibility issue in d006a3.
+
 ## [0.99.1-hotfix.0] - 2021/09/15
 #### Hotifx
 - Fixed compatibility issue with current stable branch.
