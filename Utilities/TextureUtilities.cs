@@ -1,4 +1,4 @@
-using CavesOfQuickMenu.Configs;
+using CavesOfQuickMenu.Concepts;
 
 namespace CavesOfQuickMenu.Utilities
 {

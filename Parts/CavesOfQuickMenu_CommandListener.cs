@@ -1,6 +1,6 @@
 using System;
 using XRL.UI;
-using CavesOfQuickMenu.Configs;
+using CavesOfQuickMenu.Concepts;
 
 namespace XRL.World.Parts
 {

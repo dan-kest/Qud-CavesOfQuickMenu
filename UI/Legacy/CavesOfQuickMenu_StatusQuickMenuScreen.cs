@@ -1,6 +1,6 @@
 using ConsoleLib.Console;
 using CavesOfQuickMenu.Utilities;
-using CavesOfQuickMenu.Configs;
+using CavesOfQuickMenu.Concepts;
 
 namespace XRL.UI
 {

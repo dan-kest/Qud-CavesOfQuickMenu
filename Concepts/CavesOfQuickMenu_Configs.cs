@@ -1,4 +1,4 @@
-namespace CavesOfQuickMenu.Configs
+namespace CavesOfQuickMenu.Concepts
 {
     public static class TEXTURE_PATH
     {
