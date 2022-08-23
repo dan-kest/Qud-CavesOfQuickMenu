@@ -2,7 +2,7 @@ using ConsoleLib.Console;
 
 namespace CavesOfQuickMenu.Utilities
 {
-    public static class ConsoleUtilities
+    public static class ConsoleUtil
     {
         public static void Fill(this ScreenBuffer buffer, int x1, int y1, int x2, int y2)
         {

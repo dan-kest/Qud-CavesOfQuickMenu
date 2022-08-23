@@ -4,7 +4,7 @@ using XRL.UI;
 
 namespace CavesOfQuickMenu.Utilities
 {
-    public static class InputUtilities
+    public static class InputUtil
     {
         public static (int, int) GetAllKeysFromCommand(string Cmd)
         {

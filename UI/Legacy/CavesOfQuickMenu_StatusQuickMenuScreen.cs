@@ -18,14 +18,14 @@ namespace XRL.UI
         {
             if (Buffer != null)
             {
-                ConsoleUtilities.SuppressScreenBufferImposters(true, X1, Y1, X2, Y2);
+                ConsoleUtil.SuppressScreenBufferImposters(true, X1, Y1, X2, Y2);
                 Buffer.Fill(X1, Y1, X2, Y2);
                 int sliceCount = 1;
                 for (int y = Y1; y <= Y2; y++)
                 {
                     for (int x = X1; x <= X2; x++)
                     {
-                        Buffer.SetTileAt(x, y, TextureUtilities.GetStatusQuickMenuTexture(sliceCount));
+                        Buffer.SetTileAt(x, y, TextureUtil.GetStatusQuickMenuTexture(sliceCount));
                         sliceCount++;
                     }
                 }
@@ -38,7 +38,7 @@ namespace XRL.UI
             if (Buffer != null && OldBuffer != null)
             {
                 Popup._TextConsole.DrawBuffer(OldBuffer);
-                ConsoleUtilities.SuppressScreenBufferImposters(false, X1, Y1, X2, Y2);
+                ConsoleUtil.SuppressScreenBufferImposters(false, X1, Y1, X2, Y2);
             }
         }
 
@@ -124,24 +124,24 @@ namespace XRL.UI
                     return QUICK_MENU_SCREEN_CODE.MESSAGE;
                 }
                 // Abilities
-                (int keyCmdMoveN1, int keyCmdMoveN2) = InputUtilities.GetAllKeysFromCommand("CmdMoveN");
-                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveN2)
-                        || InputUtilities.HasAnyModifiers(input, Keys.Up))
+                (int keyCmdMoveN1, int keyCmdMoveN2) = InputUtil.GetAllKeysFromCommand("CmdMoveN");
+                if (InputUtil.HasAnyModifiers(input, (Keys) keyCmdMoveN1) || InputUtil.HasAnyModifiers(input, (Keys) keyCmdMoveN2)
+                        || InputUtil.HasAnyModifiers(input, Keys.Up))
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
                     return QUICK_MENU_SCREEN_CODE.ABILITIES;
                 }
                 // Active Effects
-                (int keyCmdMoveNE1, int keyCmdMoveNE2) = InputUtilities.GetAllKeysFromCommand("CmdMoveNE");
-                if (InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveNE1) || InputUtilities.HasAnyModifiers(input, (Keys) keyCmdMoveNE2))
+                (int keyCmdMoveNE1, int keyCmdMoveNE2) = InputUtil.GetAllKeysFromCommand("CmdMoveNE");
+                if (InputUtil.HasAnyModifiers(input, (Keys) keyCmdMoveNE1) || InputUtil.HasAnyModifiers(input, (Keys) keyCmdMoveNE2))
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
                     return QUICK_MENU_SCREEN_CODE.EFFECTS;
                 }
                 // Help
-                if (input == InputUtilities.GetShift(Keys.OemQuestion) || input == Keys.F1)
+                if (input == InputUtil.GetShift(Keys.OemQuestion) || input == Keys.F1)
                 {
                     BookUI.ShowBook(BOOK.STATUS_HELP, null);
                 }

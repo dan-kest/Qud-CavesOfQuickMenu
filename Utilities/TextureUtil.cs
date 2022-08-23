@@ -2,7 +2,7 @@ using CavesOfQuickMenu.Concepts;
 
 namespace CavesOfQuickMenu.Utilities
 {
-    public static class TextureUtilities
+    public static class TextureUtil
     {
         public static string GetStatusQuickMenuTexture(int no)
         {
