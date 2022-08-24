@@ -4,12 +4,12 @@ using CavesOfQuickMenu.Concepts;
 
 namespace XRL.UI
 {
-    public class CavesOfQuickMenu_StatusQuickMenuScreen
+    public class GeneralScreen
     {
-        private const int X1 = QUICK_MENU_LEGACY_COORD.X1;
-        private const int Y1 = QUICK_MENU_LEGACY_COORD.Y1;
-        private const int X2 = QUICK_MENU_LEGACY_COORD.X2;
-        private const int Y2 = QUICK_MENU_LEGACY_COORD.Y2;
+        private const int X1 = QUICK_MENU_GENERAL_LEGACY_COORD.X1;
+        private const int Y1 = QUICK_MENU_GENERAL_LEGACY_COORD.Y1;
+        private const int X2 = QUICK_MENU_GENERAL_LEGACY_COORD.X2;
+        private const int Y2 = QUICK_MENU_GENERAL_LEGACY_COORD.Y2;
 
         private static ScreenBuffer Buffer;
         private static ScreenBuffer OldBuffer;
@@ -25,7 +25,7 @@ namespace XRL.UI
                 {
                     for (int x = X1; x <= X2; x++)
                     {
-                        Buffer.SetTileAt(x, y, TextureUtil.GetStatusQuickMenuTexture(sliceCount));
+                        Buffer.SetTileAt(x, y, TextureUtil.GetQuickMenuGeneralLegacyTexture(sliceCount));
                         sliceCount++;
                     }
                 }
@@ -44,7 +44,7 @@ namespace XRL.UI
 
         public static int Show()
         {
-            GameManager.Instance.PushGameView(SCREEN.STATUS);
+            GameManager.Instance.PushGameView(SCREEN.GENERAL);
             TextConsole.LoadScrapBuffers();
             Buffer = TextConsole.ScrapBuffer;
             OldBuffer = TextConsole.ScrapBuffer2;
@@ -54,11 +54,11 @@ namespace XRL.UI
                 Keys input = Keyboard.getvk(false);
                 string cmd = LegacyKeyMapping.GetCommandFromKey(input);
                 // Exit
-                if (input == Keys.Escape || cmd == COMMAND.OPEN_STATUS || cmd == "CmdCancel")
+                if (input == Keys.Escape || cmd == COMMAND.OPEN_GENERAL || cmd == "CmdCancel")
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
-                    return QUICK_MENU_SCREEN_CODE.NONE;
+                    return QUICK_MENU_GENERAL_SCREEN_CODE.NONE;
                 }
                 // Skills & Powers
                 if (cmd == "CmdMoveN")
@@ -121,7 +121,7 @@ namespace XRL.UI
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
-                    return QUICK_MENU_SCREEN_CODE.MESSAGE;
+                    return QUICK_MENU_GENERAL_SCREEN_CODE.MESSAGE;
                 }
                 // Abilities
                 (int keyCmdMoveN1, int keyCmdMoveN2) = InputUtil.GetAllKeysFromCommand("CmdMoveN");
@@ -130,7 +130,7 @@ namespace XRL.UI
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
-                    return QUICK_MENU_SCREEN_CODE.ABILITIES;
+                    return QUICK_MENU_GENERAL_SCREEN_CODE.ABILITIES;
                 }
                 // Active Effects
                 (int keyCmdMoveNE1, int keyCmdMoveNE2) = InputUtil.GetAllKeysFromCommand("CmdMoveNE");
@@ -138,12 +138,12 @@ namespace XRL.UI
                 {
                     Erase();
                     GameManager.Instance.PopGameView();
-                    return QUICK_MENU_SCREEN_CODE.EFFECTS;
+                    return QUICK_MENU_GENERAL_SCREEN_CODE.EFFECTS;
                 }
                 // Help
                 if (input == InputUtil.GetShift(Keys.OemQuestion) || input == Keys.F1)
                 {
-                    BookUI.ShowBook(BOOK.STATUS_HELP, null);
+                    BookUI.ShowBook(BOOK.GENERAL_HELP, null);
                 }
             }
         }

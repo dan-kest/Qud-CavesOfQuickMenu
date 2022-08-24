@@ -10,7 +10,7 @@ namespace CavesOfQuickMenu.Handlers
     {
         public void mutate(GameObject player)
         {
-            player.AddPart<CavesOfQuickMenu_CommandListener>();
+            player.AddPart<CommandListener>();
         }
     }
 
@@ -23,7 +23,7 @@ namespace CavesOfQuickMenu.Handlers
             GameObject player = XRLCore.Core?.Game?.Player?.Body;
             if (player != null)
             {
-                player.RequirePart<CavesOfQuickMenu_CommandListener>();
+                player.RequirePart<CommandListener>();
             }
         }
     }

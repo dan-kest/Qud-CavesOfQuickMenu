@@ -17,7 +17,7 @@ namespace CavesOfQuickMenu.Concepts
         public const int TINKERING = 7;
     }
 
-    public static class QUICK_MENU_SCREEN_CODE
+    public static class QUICK_MENU_GENERAL_SCREEN_CODE
     {
         public const int NONE      = -1000;
         public const int MESSAGE   = 1000;
@@ -28,18 +28,18 @@ namespace CavesOfQuickMenu.Concepts
     public static class BOOK
     {
         private const string prefix = "Book_" + META.MOD_NAME + "_";
-        public const string STATUS_HELP = prefix + "Status_Help";
+        public const string GENERAL_HELP = prefix + "General_Help";
     }
 
     public static class COMMAND
     {
         private const string prefix = "Cmd_" + META.MOD_NAME + "_";
-        public const string OPEN_STATUS = prefix + "Open_Status";
+        public const string OPEN_GENERAL = prefix + "Open_General";
     }
 
     public static class SCREEN
     {
         private const string prefix = META.MOD_NAME + ":";
-        public const string STATUS = prefix + "Status";
+        public const string GENERAL = prefix + "General";
     }
 }
