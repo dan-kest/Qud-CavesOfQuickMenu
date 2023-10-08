@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <books>
-  <book ID="Book_CavesOfQuickMenu_Status_Help" Title="{{W|Status Quick Menu}}">
+  <book ID="Book_CavesOfQuickMenu_Help" Title="{{W|Quick Menu}}">
     <page>
 Use {{W|Direction}} and {{W|Wait}} keys to navigate to other screens.
 

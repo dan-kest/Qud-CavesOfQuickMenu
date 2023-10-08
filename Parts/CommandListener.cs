@@ -7,15 +7,15 @@ namespace XRL.World.Parts
     [Serializable]
     public class CommandListener : IPart
     {
-        public override void Register(GameObject Object)
+        public override void Register(GameObject obj)
         {
-            Object.RegisterPartEvent(this, COMMAND.OPEN_GENERAL);
-            base.Register(Object);
+            obj.RegisterPartEvent(this, COMMAND.OPEN_GENERAL);
+            base.Register(obj);
         }
 
-        public override bool FireEvent(Event E)
+        public override bool FireEvent(Event e)
         {
-            if (E.ID == COMMAND.OPEN_GENERAL)
+            if (e.ID == COMMAND.OPEN_GENERAL)
             {
                 int screenCode = GeneralScreen.Show();
 
@@ -26,26 +26,26 @@ namespace XRL.World.Parts
                     Screens.Show(The.Player);
                 }
                 // Message History
-                else if (screenCode == QUICK_MENU_GENERAL_SCREEN_CODE.MESSAGE)
+                else if (screenCode == QUICK_MENU_SCREEN_CODE.MESSAGE)
                 {
                     The.Game.Player.Messages.Show();
                 }
                 // Abilities
-                else if (screenCode == QUICK_MENU_GENERAL_SCREEN_CODE.ABILITIES)
+                else if (screenCode == QUICK_MENU_SCREEN_CODE.ABILITIES)
                 {
                     string command = AbilityManager.Show(The.Player);
                     if (!string.IsNullOrEmpty(command))
                     {
-                        CommandEvent.Send(The.Player, command, null, null, null);
+                        CommandEvent.Send(The.Player, command);
                     }
                 }
                 // Active Effects
-                else if (screenCode == QUICK_MENU_GENERAL_SCREEN_CODE.EFFECTS)
+                else if (screenCode == QUICK_MENU_SCREEN_CODE.EFFECTS)
                 {
                     The.Player.ShowActiveEffects();
                 }
             }
-            return base.FireEvent(E);
+            return base.FireEvent(e);
         }
     }
 }

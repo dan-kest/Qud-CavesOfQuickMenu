@@ -6,25 +6,41 @@ namespace CavesOfQuickMenu.Utilities
 {
     public static class InputUtil
     {
-        public static (int, int) GetAllKeysFromCommand(string Cmd)
+        public static (int, int) GetAllKeysFromCommand(string cmd)
         {
             int primary = 0;
             int secondary = 0;
-            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair in LegacyKeyMapping.CurrentMap.PrimaryMapCommandToKeyLayer)
+            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair in CommandBindingManager.CurrentMap.PrimaryMapCommandToKeyLayer)
             {
-                if (keyValuePair.Value.TryGetValue(Cmd, out primary))
+                if (keyValuePair.Value.TryGetValue(cmd, out primary))
                 {
                     break;
                 }
             }
-            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair2 in LegacyKeyMapping.CurrentMap.SecondaryMapCommandToKeyLayer)
+            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair2 in CommandBindingManager.CurrentMap.SecondaryMapCommandToKeyLayer)
             {
-                if (keyValuePair2.Value.TryGetValue(Cmd, out secondary))
+                if (keyValuePair2.Value.TryGetValue(cmd, out secondary))
                 {
                     break;
                 }
             }
             return (primary, secondary);
+        }
+
+        public static bool IsMouseEvent(Keys input, params string[] mouseEventNameList)
+        {
+            if (input != Keys.MouseEvent)
+            {
+                return false;
+            }
+            foreach (string mouseEventName in mouseEventNameList)
+            {
+                if (Keyboard.CurrentMouseEvent.Event == $"Command:{mouseEventName}")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private const int Shift = (int) Keys.Shift;

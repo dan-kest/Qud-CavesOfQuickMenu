@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
-  <command ID="Cmd_CavesOfQuickMenu_Open_Status" DisplayText="Open Status Quick Menu" Category="Quick Menu"></command>
+  <command ID="Cmd_CavesOfQuickMenu_OpenGeneral" DisplayText="Open Quick Menu" Category="Quick Menu" Layer="Adventure" Auto="DownPass"></command>
 </commands>
