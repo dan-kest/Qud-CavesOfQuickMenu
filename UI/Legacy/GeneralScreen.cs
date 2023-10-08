@@ -1,3 +1,4 @@
+using System.Threading;
 using ConsoleLib.Console;
 using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
@@ -42,6 +43,10 @@ namespace XRL.UI
             }
         }
 
+        private static void DrawSelected(Direction direction)
+        {
+        }
+
         private static void Erase()
         {
             if (buffer != null && bufferOld != null)
@@ -51,14 +56,15 @@ namespace XRL.UI
             }
         }
 
-        private static int ChangeScreen(int screenCode)
+        private static QudScreenCode ChangeScreen(QudScreenCode screenCode)
         {
+            Thread.Sleep(100); // Prevent input leak to the next screen
             Erase();
             GameManager.Instance.PopGameView();
             return screenCode;
         }
 
-        public static int Show()
+        public static QudScreenCode Show()
         {
             GameManager.Instance.PushGameView(SCREEN.GENERAL);
             TextConsole.LoadScrapBuffers();
@@ -71,52 +77,52 @@ namespace XRL.UI
                 // Exit
                 if (InputUtil.IsMouseEvent(input, "CmdSystemMenu", COMMAND.OPEN_GENERAL, "Cancel"))
                 {
-                    return ChangeScreen(QUICK_MENU_SCREEN_CODE.NONE);
+                    return ChangeScreen(QudScreenCode.None);
                 }
                 // Skills & Powers
                 if (InputUtil.IsMouseEvent(input, "CmdMoveN"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.SKILLS);
+                    return ChangeScreen(QudScreenCode.Skills);
                 }
                 // Character Sheet
                 if (InputUtil.IsMouseEvent(input, "CmdMoveNE"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.CHARACTER);
+                    return ChangeScreen(QudScreenCode.Character);
                 }
                 // Inventory
                 if (InputUtil.IsMouseEvent(input, "CmdMoveE"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.INVENTORY);
+                    return ChangeScreen(QudScreenCode.Inventory);
                 }
                 // Equipment
                 if (InputUtil.IsMouseEvent(input, "CmdMoveSE"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.EQUIPMENT);
+                    return ChangeScreen(QudScreenCode.Equipment);
                 }
                 // Factions (Reputation)
                 if (InputUtil.IsMouseEvent(input, "CmdMoveS"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.FACTIONS);
+                    return ChangeScreen(QudScreenCode.Factions);
                 }
                 // Quests
                 if (InputUtil.IsMouseEvent(input, "CmdMoveSW"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.QUESTS);
+                    return ChangeScreen(QudScreenCode.Quests);
                 }
                 // Journal
                 if (InputUtil.IsMouseEvent(input, "CmdMoveW"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.JOURNAL);
+                    return ChangeScreen(QudScreenCode.Journal);
                 }
                 // Tinkering
                 if (InputUtil.IsMouseEvent(input, "CmdMoveNW"))
                 {
-                    return ChangeScreen(QUD_SCREEN_CODE.TINKERING);
+                    return ChangeScreen(QudScreenCode.Tinkering);
                 }
                 // Message History
                 if (InputUtil.IsMouseEvent(input, "CmdWait"))
                 {
-                    return ChangeScreen(QUICK_MENU_SCREEN_CODE.MESSAGE);
+                    return ChangeScreen(QudScreenCode.Message);
                 }
 
                 // ===== Alternate Manu =====

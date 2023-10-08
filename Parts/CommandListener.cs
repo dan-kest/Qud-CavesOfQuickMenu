@@ -17,21 +17,21 @@ namespace XRL.World.Parts
         {
             if (e.ID == COMMAND.OPEN_GENERAL)
             {
-                int screenCode = GeneralScreen.Show();
+                QudScreenCode screenCode = GeneralScreen.Show();
 
                 // Normal screen code range
-                if (screenCode >= QUD_SCREEN_CODE.SKILLS && screenCode <= QUD_SCREEN_CODE.TINKERING)
+                if (screenCode >= QudScreenCode.Skills && screenCode <= QudScreenCode.Tinkering)
                 {
-                    Screens.CurrentScreen = screenCode;
+                    Screens.CurrentScreen = (int) screenCode;
                     Screens.Show(The.Player);
                 }
                 // Message History
-                else if (screenCode == QUICK_MENU_SCREEN_CODE.MESSAGE)
+                else if (screenCode == QudScreenCode.Message)
                 {
                     The.Game.Player.Messages.Show();
                 }
                 // Abilities
-                else if (screenCode == QUICK_MENU_SCREEN_CODE.ABILITIES)
+                else if (screenCode == QudScreenCode.Abilities)
                 {
                     string command = AbilityManager.Show(The.Player);
                     if (!string.IsNullOrEmpty(command))
@@ -40,7 +40,7 @@ namespace XRL.World.Parts
                     }
                 }
                 // Active Effects
-                else if (screenCode == QUICK_MENU_SCREEN_CODE.EFFECTS)
+                else if (screenCode == QudScreenCode.Effects)
                 {
                     The.Player.ShowActiveEffects();
                 }
