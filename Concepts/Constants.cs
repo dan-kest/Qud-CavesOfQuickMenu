@@ -1,21 +1,23 @@
 namespace CavesOfQuickMenu.Concepts
 {
-    public static class TEXTURE_PATH
+    public static class TexturePath
     {
-        public const string GENERAL_LEGACY = "CavesOfQuickMenu/QuickMenu/General/Legacy/Slice {{1}}.png";
+        private const string GENERAL = "CavesOfQuickMenu/QuickMenu/General";
+        public const string GENERAL_LEGACY = GENERAL + "/Legacy/Slice {0}.png";
+        public const string GENERAL_LEGACY_SELECTED = GENERAL + "/Legacy_{0}/Slice {1}.png";
     }
 
-    public static class BOOK
+    public static class Book
     {
         public const string HELP = "Book_CavesOfQuickMenu_Help";
     }
 
-    public static class COMMAND
+    public static class Command
     {
         public const string OPEN_GENERAL = "Cmd_CavesOfQuickMenu_OpenGeneral";
     }
 
-    public static class SCREEN
+    public static class Screen
     {
         public const string GENERAL = "CavesOfQuickMenu:General";
     }

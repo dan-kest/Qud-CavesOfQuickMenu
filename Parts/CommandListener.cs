@@ -9,13 +9,13 @@ namespace XRL.World.Parts
     {
         public override void Register(GameObject obj)
         {
-            obj.RegisterPartEvent(this, COMMAND.OPEN_GENERAL);
+            obj.RegisterPartEvent(this, Command.OPEN_GENERAL);
             base.Register(obj);
         }
 
         public override bool FireEvent(Event e)
         {
-            if (e.ID == COMMAND.OPEN_GENERAL)
+            if (e.ID == Command.OPEN_GENERAL)
             {
                 QudScreenCode screenCode = GeneralScreen.Show();
 

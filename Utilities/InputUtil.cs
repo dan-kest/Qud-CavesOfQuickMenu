@@ -6,27 +6,6 @@ namespace CavesOfQuickMenu.Utilities
 {
     public static class InputUtil
     {
-        public static (int, int) GetAllKeysFromCommand(string cmd)
-        {
-            int primary = 0;
-            int secondary = 0;
-            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair in CommandBindingManager.CurrentMap.PrimaryMapCommandToKeyLayer)
-            {
-                if (keyValuePair.Value.TryGetValue(cmd, out primary))
-                {
-                    break;
-                }
-            }
-            foreach (KeyValuePair<string, Dictionary<string, int>> keyValuePair2 in CommandBindingManager.CurrentMap.SecondaryMapCommandToKeyLayer)
-            {
-                if (keyValuePair2.Value.TryGetValue(cmd, out secondary))
-                {
-                    break;
-                }
-            }
-            return (primary, secondary);
-        }
-
         public static bool IsMouseEvent(Keys input, params string[] mouseEventNameList)
         {
             if (input != Keys.MouseEvent)
@@ -41,36 +20,6 @@ namespace CavesOfQuickMenu.Utilities
                 }
             }
             return false;
-        }
-
-        private const int Shift = (int) Keys.Shift;
-        private const int Control = (int) Keys.Control;
-        private const int Alt = (int) Keys.Alt;
-        private const int ShiftControl = Shift + Control;
-        private const int ShiftAlt = Shift + Alt;
-        private const int ControlAlt = Control + Alt;
-        private const int ShiftControlAlt = ShiftControl + Alt;
-
-        public static Keys GetShift(Keys keys)
-        {
-            return (Keys) keys + Shift;
-        }
-
-        public static Keys GetControl(Keys keys)
-        {
-            return (Keys) keys + Control;
-        }
-
-        public static Keys GetAlt(Keys keys)
-        {
-            return (Keys) keys + Alt;
-        }
-
-        public static bool HasAnyModifiers(Keys input, Keys keys)
-        {
-            return input == keys + Shift || input == keys + Control || input == keys + Alt
-                    || input == keys + ShiftControl || input == keys + ShiftAlt
-                    || input == keys + ControlAlt || input == keys + ShiftControlAlt;
         }
     }
 }

@@ -1,12 +1,18 @@
+using System;
 using CavesOfQuickMenu.Concepts;
 
 namespace CavesOfQuickMenu.Utilities
 {
     public static class TextureUtil
     {
-        public static string GetQuickMenuGeneralLegacyTexture(int no)
+        public static string GetGeneralLegacy(int no)
         {
-            return TEXTURE_PATH.GENERAL_LEGACY.Replace("{{1}}", no.ToString());
+            return String.Format(TexturePath.GENERAL_LEGACY, no.ToString());
+        }
+
+        public static string GetGeneralLegacySelected(Direction direction, int no)
+        {
+            return String.Format(TexturePath.GENERAL_LEGACY_SELECTED, direction, no.ToString());
         }
     }
 }
