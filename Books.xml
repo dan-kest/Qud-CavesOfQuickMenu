@@ -2,15 +2,13 @@
 <books>
   <book ID="Book_CavesOfQuickMenu_Help" Title="{{W|Quick Menu}}">
     <page>
-Use {{W|Direction}} and {{W|Wait}} keys to navigate to other screens.
+Use {{W|Move}} and {{W|Wait}} keys to navigate to other screens.
 
 {{C|List of available inputs}}
 
 - {{W|Northwest}} {{K|-----------------}} Tinkering
 - {{W|North}} {{K|---------------------}} Skills and Powers
-  {{M|Modifier}}+{{W|North}} {{K|------------}} Abilities
 - {{W|Northeast}} {{K|-----------------}} Character Sheet
-  {{M|Modifier}}+{{W|Northeast}} {{K|--------}} Active Effects
 - {{W|West}} {{K|----------------------}} Journal
 - {{W|Wait}} {{K|----------------------}} Message History
 - {{W|East}} {{K|----------------------}} Inventory
@@ -18,9 +16,7 @@ Use {{W|Direction}} and {{W|Wait}} keys to navigate to other screens.
 - {{W|South}} {{K|---------------------}} Factions (Reputation)
 - {{W|Southeast}} {{K|-----------------}} Equipment
 
-* {{M|Modifier}} key refers to {{W|Shift}} {{B|or}} {{W|Ctrl}} {{B|or}} {{W|Alt}} in any combination.
-
-If you run into any issue please send me a message.
+If you run into any issue please send me a message directly.
 You can find my contact on Steam workshop page.
     </page>
   </book>

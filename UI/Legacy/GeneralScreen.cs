@@ -71,7 +71,11 @@ namespace XRL.UI
 
         private static QudScreenCode ChangeScreen(QudScreenCode screenCode)
         {
-            Thread.Sleep(200); // High enough to prevent accidental input leak to the next screen
+            int delay = QuickMenuOptions.NextScreenDelay;
+            if (screenCode != QudScreenCode.None && delay > 0)
+            {
+                Thread.Sleep(delay);
+            }
             Erase();
             GameManager.Instance.PopGameView();
             return screenCode;
@@ -145,6 +149,11 @@ namespace XRL.UI
                 {
                     DrawSelected(Direction.M);
                     return ChangeScreen(QudScreenCode.Message);
+                }
+                // Help
+                if (InputUtil.IsMouseEvent(input, "CmdHelp"))
+                {
+                    BookUI.ShowBook(Book.HELP);
                 }
             }
         }
