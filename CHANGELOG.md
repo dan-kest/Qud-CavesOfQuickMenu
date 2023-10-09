@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.1] - 2023/10/10
+#### New
+- Added Close Quick Menu keybind mostly to use with controller.
+
 ## [0.100.0] - 2023/10/09
 #### Fix
 - Fixed main functionality for **2.0.206.3 (beta - 7th plague beta)** patch onward.
