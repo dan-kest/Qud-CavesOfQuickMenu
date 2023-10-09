@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.100.0] - 2023/10/09
+#### Fix
+- Fixed main functionality for **beta - 7th plague beta** patch onward.
+#### Change
+- Droped support for previous game version on **main** branch, will support legacy version on **legacy** branch.
+#### Remove
+- Removed alternate menu navigation with modifier keys (might re-implement later).
+
 ## [0.99.2] - 2021/12/20
 #### Fix
 - Revert change to stable branch compatibility issue in d006a3.
