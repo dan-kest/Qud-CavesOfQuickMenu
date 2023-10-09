@@ -2,7 +2,7 @@
 
 ## [0.100.0] - 2023/10/09
 #### Fix
-- Fixed main functionality for **beta - 7th plague beta** patch onward.
+- Fixed main functionality for **2.0.206.3 (beta - 7th plague beta)** patch onward.
 #### Change
 - Droped support for previous game version on **main** branch, will support legacy version on **legacy** branch.
 #### Remove
