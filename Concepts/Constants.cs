@@ -15,6 +15,7 @@ namespace CavesOfQuickMenu.Concepts
     public static class Command
     {
         public const string OPEN_GENERAL = "Cmd_CavesOfQuickMenu_OpenGeneral";
+        public const string CLOSE = "Cmd_CavesOfQuickMenu_Close";
     }
 
     public static class Screen

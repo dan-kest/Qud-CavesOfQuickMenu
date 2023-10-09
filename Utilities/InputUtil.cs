@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using ConsoleLib.Console;
-using XRL.UI;
 
 namespace CavesOfQuickMenu.Utilities
 {

@@ -92,7 +92,7 @@ namespace XRL.UI
             {
                 Keys input = Keyboard.getvk(false);
                 // Exit
-                if (InputUtil.IsMouseEvent(input, "CmdSystemMenu", Command.OPEN_GENERAL, "Cancel"))
+                if (InputUtil.IsMouseEvent(input, "CmdSystemMenu", Command.OPEN_GENERAL, Command.CLOSE, "Cancel"))
                 {
                     return ChangeScreen(QudScreenCode.None);
                 }
