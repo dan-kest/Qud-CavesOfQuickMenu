@@ -2,7 +2,7 @@ using System;
 
 namespace CavesOfQuickMenu.Concepts
 {
-    public class QuickMenuOptions
+    public class QudOptions
     {
         private static string GetOption(string id)
         {

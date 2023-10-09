@@ -71,7 +71,7 @@ namespace XRL.UI
 
         private static QudScreenCode ChangeScreen(QudScreenCode screenCode)
         {
-            int delay = QuickMenuOptions.NextScreenDelay;
+            int delay = QudOptions.NextScreenDelay;
             if (screenCode != QudScreenCode.None && delay > 0)
             {
                 Thread.Sleep(delay);
