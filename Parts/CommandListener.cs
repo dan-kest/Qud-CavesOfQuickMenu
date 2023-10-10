@@ -47,5 +47,23 @@ namespace XRL.World.Parts
             }
             return base.FireEvent(e);
         }
+
+        public override bool WantEvent(int id, int cascade)
+        {
+            return base.WantEvent(id, cascade) || id == AfterPlayerBodyChangeEvent.ID;
+        }
+
+        public override bool HandleEvent(AfterPlayerBodyChangeEvent e)
+        {
+            if (e.OldBody == ParentObject)
+            {
+                e.OldBody.RemovePart(this);
+            }
+            if (e.NewBody != null && !e.NewBody.HasPart<CommandListener>())
+            {
+                e.NewBody.AddPart(this);
+            }
+            return base.HandleEvent(e);
+        }
     }
 }

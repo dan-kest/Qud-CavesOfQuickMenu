@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.2] - 2023/10/10
+#### Fix
+- Fixed an issue with keybinds and Domination mutation.
+
 ## [0.100.1] - 2023/10/10
 #### New
 - Added Close Quick Menu keybind mostly to use with controller.
