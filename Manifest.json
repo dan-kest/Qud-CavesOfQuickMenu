@@ -1,10 +1,10 @@
 {
-    "id": "CavesOfQuickMenu",
+    "id": "CavesOfQuickMenu_Legacy",
     "loadorder": 0,
-    "title": "{{Y|Caves of Qu}}{{y|ick Menu}}",
-    "description": "{{Y|Press [{{W|Help}}] while in quick menu for help.}}\n\n{{W|* App restart is required after approving or enabling this mod from disabled state, or it might cause the game to freeze. If that's the case, simply Alt+F4 and restart the game.}}\n{{w|* If you are experiencing dark color main menu after restart, as far as I'm concerned it's safe to ignore.}}\n{{W|* To access quick menu screen, assign a key to open quick menu in the [Quick Menu] section from Key Mapping.}}\n\nThis mod adds a new menu which acts as a hub to ties all status screens into one keymap.\nMain purpose is to free up some keymaps for no-numpad user or anyone who think their keymap is a mess (aka me for both cases).",
+    "title": "{{Y|Caves of Qu}}{{y|ick Menu}} {{W|(Legacy)}}",
+    "description": "{{Y|Press [{{W|Help}}] while in quick menu for help.}}\n\n{{W|* App restart is required after approving or enabling this mod from disabled state, or it might cause the game to freeze. If that's the case, simply Alt+F4 and restart the game.}}\n{{w|* If you are experiencing dark color main menu after restart, as far as I'm concerned it's safe to ignore.}}\n{{W|* To access quick menu screen, assign a key to open quick menu in the [Quick Menu] section from Key Mapping.}}\n{{w|* For best experience, please turn off new input manager.}}\n{{W|* If you want use this with controller, read Steam workshop page description.}}\n\nThis mod adds a new menu which acts as a hub to ties all status screens into one keymap.\nMain purpose is to free up some keymaps for no-numpad user or anyone who think their keymap is a mess (aka me for both cases).",
     "tags": "UX, Key Mapping",
-    "version": "0.100.1",
+    "version": "0.99.3",
     "author": "ZoraZ",
     "previewImage": "CavesOfQuickMenu_Cover.png"
 }
