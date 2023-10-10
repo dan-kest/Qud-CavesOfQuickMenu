@@ -146,7 +146,7 @@ namespace XRL.UI
                     return ChangeScreen(QudScreenCode.Tinkering);
                 }
                 // Message History
-                if (InputUtil.IsCommand(cmd, "CmdWait"))
+                if (InputUtil.IsCommand(cmd, "CmdWait") || InputUtil.IsMouseEvent(input, "CmdWait"))
                 {
                     DrawSelected(Direction.M);
                     return ChangeScreen(QudScreenCode.Message);
