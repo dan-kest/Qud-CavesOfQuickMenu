@@ -19,5 +19,17 @@ namespace CavesOfQuickMenu.Utilities
             }
             return false;
         }
+
+        public static bool IsCommand(string inputCmd, params string[] commandList)
+        {
+            foreach (string command in commandList)
+            {
+                if (inputCmd == command)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

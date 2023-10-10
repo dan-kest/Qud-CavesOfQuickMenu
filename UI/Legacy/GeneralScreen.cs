@@ -91,67 +91,68 @@ namespace XRL.UI
             while (true)
             {
                 Keys input = Keyboard.getvk(false);
+                string cmd = LegacyKeyMapping.GetCommandFromKey(input);
                 // Exit
-                if (InputUtil.IsMouseEvent(input, "CmdSystemMenu", Command.OPEN_GENERAL, Command.CLOSE, "Cancel"))
+                if (InputUtil.IsCommand(cmd, "CmdSystemMenu", Command.OPEN_GENERAL, Command.CLOSE, "CmdCancel"))
                 {
                     return ChangeScreen(QudScreenCode.None);
                 }
                 // Skills & Powers
-                if (InputUtil.IsMouseEvent(input, "CmdMoveN"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveN"))
                 {
                     DrawSelected(Direction.N);
                     return ChangeScreen(QudScreenCode.Skills);
                 }
                 // Character Sheet
-                if (InputUtil.IsMouseEvent(input, "CmdMoveNE"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveNE"))
                 {
                     DrawSelected(Direction.NE);
                     return ChangeScreen(QudScreenCode.Character);
                 }
                 // Inventory
-                if (InputUtil.IsMouseEvent(input, "CmdMoveE"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveE"))
                 {
                     DrawSelected(Direction.E);
                     return ChangeScreen(QudScreenCode.Inventory);
                 }
                 // Equipment
-                if (InputUtil.IsMouseEvent(input, "CmdMoveSE"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveSE"))
                 {
                     DrawSelected(Direction.SE);
                     return ChangeScreen(QudScreenCode.Equipment);
                 }
                 // Factions (Reputation)
-                if (InputUtil.IsMouseEvent(input, "CmdMoveS"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveS"))
                 {
                     DrawSelected(Direction.S);
                     return ChangeScreen(QudScreenCode.Factions);
                 }
                 // Quests
-                if (InputUtil.IsMouseEvent(input, "CmdMoveSW"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveSW"))
                 {
                     DrawSelected(Direction.SW);
                     return ChangeScreen(QudScreenCode.Quests);
                 }
                 // Journal
-                if (InputUtil.IsMouseEvent(input, "CmdMoveW"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveW"))
                 {
                     DrawSelected(Direction.W);
                     return ChangeScreen(QudScreenCode.Journal);
                 }
                 // Tinkering
-                if (InputUtil.IsMouseEvent(input, "CmdMoveNW"))
+                if (InputUtil.IsCommand(cmd, "CmdMoveNW"))
                 {
                     DrawSelected(Direction.NW);
                     return ChangeScreen(QudScreenCode.Tinkering);
                 }
                 // Message History
-                if (InputUtil.IsMouseEvent(input, "CmdWait"))
+                if (InputUtil.IsCommand(cmd, "CmdWait"))
                 {
                     DrawSelected(Direction.M);
                     return ChangeScreen(QudScreenCode.Message);
                 }
                 // Help
-                if (InputUtil.IsMouseEvent(input, "CmdHelp"))
+                if (InputUtil.IsCommand(cmd, "CmdHelp"))
                 {
                     BookUI.ShowBook(Book.HELP);
                 }
