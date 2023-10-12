@@ -1,27 +1,56 @@
+using System;
 using System.Threading;
 using ConsoleLib.Console;
 using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
+using System.Collections.Generic;
 namespace XRL.UI
 {
-    [UIView(Screen.GENERAL, false, false, false, "Adventure", null, false, 0, false)]
+    [UIView(Screen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
     public class GeneralScreen : IWantsTextConsoleInit
     {
         private static TextConsole _textConsole;
-        private static ScreenBuffer _screenBuffer;
 
         private static ScreenBuffer buffer;
         private static ScreenBuffer bufferOld;
 
         private static int baseX1, baseY1, baseX2, baseY2;
 
-        public void Init(TextConsole textConsole, ScreenBuffer screenBuffer)
+        private static Direction selectedDirection;
+        private static Direction selectedDirectionPrev;
+        private static QudScreenCode selectedScreenCode;
+        private static InputDevice selectedByDevice;
+
+        public static readonly Dictionary<Direction, QudScreenCode> DirectionToScreenCode = new Dictionary<Direction, QudScreenCode>()
+        {
+            { Direction.None, QudScreenCode.None },
+            { Direction.M, QudScreenCode.Message },
+            { Direction.N, QudScreenCode.Skills },
+            { Direction.NE, QudScreenCode.Character },
+            { Direction.E, QudScreenCode.Inventory },
+            { Direction.SE, QudScreenCode.Equipment },
+            { Direction.S, QudScreenCode.Factions },
+            { Direction.SW, QudScreenCode.Quests },
+            { Direction.W, QudScreenCode.Journal },
+            { Direction.NW, QudScreenCode.Tinkering },
+        };
+
+        public void Init(TextConsole textConsole, ScreenBuffer _)
 		{
 			_textConsole = textConsole;
-			_screenBuffer = screenBuffer;
 
             (baseX1, baseY1, baseX2, baseY2) = LegacyCoord.GetBaseCoord();
+
+            ResetSelected();
 		}
+
+        private static void ResetSelected()
+        {
+            selectedDirection = Direction.None;
+            selectedDirectionPrev = Direction.None;
+            selectedScreenCode = QudScreenCode.None;
+            selectedByDevice = InputDevice.Keyboard;
+        }
 
         private static void Draw()
         {
@@ -42,9 +71,9 @@ namespace XRL.UI
             }
         }
 
-        private static void DrawSelected(Direction direction)
+        private static void DrawSelected(Direction direction, bool isSelecting = true)
         {
-            if (buffer != null)
+            if (buffer != null && direction != Direction.None)
             {
                 (int x1, int y1, int x2, int y2) = LegacyCoord.GetSelectedCoord(direction);
                 int sliceCount = 1;
@@ -52,8 +81,16 @@ namespace XRL.UI
                 {
                     for (int x = x1; x <= x2; x++)
                     {
-                        buffer.SetTileAt(x, y, TextureUtil.GetGeneralLegacySelected(direction, sliceCount));
-                        sliceCount++;
+                        if (isSelecting)
+                        {
+                            buffer.SetTileAt(x, y, TextureUtil.GetGeneralLegacySelected(direction, sliceCount));
+                            sliceCount++;
+                        }
+                        else
+                        {
+                            int no = x - LegacyCoord.OFFSET_X + ((y - LegacyCoord.OFFSET_Y - 1) * LegacyCoord.WIDTH);
+                            buffer.SetTileAt(x, y, TextureUtil.GetGeneralLegacy(no));
+                        }
                     }
                 }
                 _textConsole.DrawBuffer(buffer);
@@ -69,16 +106,112 @@ namespace XRL.UI
             }
         }
 
-        private static QudScreenCode ChangeScreen(QudScreenCode screenCode)
+        private static bool SelectScreen(QudScreenCode screenCode)
         {
-            int delay = QudOptions.NextScreenDelay;
-            if (screenCode != QudScreenCode.None && delay > 0)
+            selectedScreenCode = screenCode;
+            return false;
+        }
+
+        private static bool SelectDirection(Direction direction, bool isConfirm = true)
+        {
+            if (DirectionToScreenCode.ContainsKey(direction))
             {
-                Thread.Sleep(delay);
+                if (selectedDirection != selectedDirectionPrev && selectedDirectionPrev != Direction.None)
+                {
+                    DrawSelected(selectedDirectionPrev, false);
+                }
+                selectedDirectionPrev = selectedDirection;
+                selectedDirection = direction;
+                if (selectedDirection != selectedDirectionPrev && selectedDirection != Direction.None)
+                {
+                    DrawSelected(selectedDirection);
+                }
+                if (isConfirm)
+                {
+                    return SelectScreen(DirectionToScreenCode[direction]);
+                }
             }
-            Erase();
-            GameManager.Instance.PopGameView();
-            return screenCode;
+            return true;
+        }
+
+        private static bool CheckingInput()
+        {
+            Keys input = Keyboard.getvk(false, false, false);
+            if (input == Keys.MouseEvent && Keyboard.CurrentMouseEvent.Event != null)
+            {
+                string @event = Keyboard.CurrentMouseEvent.Event;
+
+                // Keyboard & Controller
+                string cmd = null;
+                if (@event.StartsWith("Command:"))
+                {
+                    cmd = @event.Split(":")[1];
+                }
+                switch (cmd)
+                {
+                    case "CmdSystemMenu":
+                    case Command.OPEN_GENERAL:
+                    case Command.CLOSE:
+                    case "Cancel":
+                        return SelectScreen(QudScreenCode.None);
+                    case "CmdWait":
+                        return SelectDirection(Direction.M);
+                    case "CmdMoveN":
+                        return SelectDirection(Direction.N);
+                    case "CmdMoveNE":
+                        return SelectDirection(Direction.NE);
+                    case "CmdMoveE":
+                        return SelectDirection(Direction.E);
+                    case "CmdMoveSE":
+                        return SelectDirection(Direction.SE);
+                    case "CmdMoveS":
+                        return SelectDirection(Direction.S);
+                    case "CmdMoveSW":
+                        return SelectDirection(Direction.SW);
+                    case "CmdMoveW":
+                        return SelectDirection(Direction.W);
+                    case "CmdMoveNW":
+                        return SelectDirection(Direction.NW);
+                    case "CmdHelp":
+                        BookUI.ShowBook(Book.HELP);
+                        break;
+                }
+
+                // Mouse
+                if (Options.MouseInput)
+                {
+                    if (@event == "RightClick")
+                    {
+                        return SelectScreen(QudScreenCode.None);
+                    }
+                    int x = Keyboard.CurrentMouseEvent.x;
+                    int y = Keyboard.CurrentMouseEvent.y;
+                    bool isHover = false;
+                    foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+                    {
+                        if (direction != Direction.None)
+                        {
+                            (int x1, int y1, int x2, int y2) = LegacyCoord.GetSelectedCoord(direction);
+                            if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
+                            {
+                                isHover = true;
+                                if (@event == "LeftClick")
+                                {
+                                    selectedByDevice = InputDevice.Mouse;
+                                    return SelectDirection(direction, true);
+                                }
+                                SelectDirection(direction);
+                                break;
+                            }
+                        }
+                    }
+                    if (!isHover)
+                    {
+                        SelectDirection(Direction.None, false);
+                    }
+                }
+            }
+            return true;
         }
 
         public static QudScreenCode Show()
@@ -87,75 +220,17 @@ namespace XRL.UI
             TextConsole.LoadScrapBuffers();
             buffer = TextConsole.ScrapBuffer;
             bufferOld = TextConsole.ScrapBuffer2;
+            ResetSelected();
             Draw();
-            while (true)
+            while (CheckingInput());
+            int delay = QudOptions.NextScreenDelay;
+            if (selectedScreenCode != QudScreenCode.None && selectedByDevice != InputDevice.Mouse && delay > 0)
             {
-                Keys input = Keyboard.getvk(false);
-                // Exit
-                if (InputUtil.IsMouseEvent(input, "CmdSystemMenu", Command.OPEN_GENERAL, Command.CLOSE, "Cancel"))
-                {
-                    return ChangeScreen(QudScreenCode.None);
-                }
-                // Skills & Powers
-                if (InputUtil.IsMouseEvent(input, "CmdMoveN"))
-                {
-                    DrawSelected(Direction.N);
-                    return ChangeScreen(QudScreenCode.Skills);
-                }
-                // Character Sheet
-                if (InputUtil.IsMouseEvent(input, "CmdMoveNE"))
-                {
-                    DrawSelected(Direction.NE);
-                    return ChangeScreen(QudScreenCode.Character);
-                }
-                // Inventory
-                if (InputUtil.IsMouseEvent(input, "CmdMoveE"))
-                {
-                    DrawSelected(Direction.E);
-                    return ChangeScreen(QudScreenCode.Inventory);
-                }
-                // Equipment
-                if (InputUtil.IsMouseEvent(input, "CmdMoveSE"))
-                {
-                    DrawSelected(Direction.SE);
-                    return ChangeScreen(QudScreenCode.Equipment);
-                }
-                // Factions (Reputation)
-                if (InputUtil.IsMouseEvent(input, "CmdMoveS"))
-                {
-                    DrawSelected(Direction.S);
-                    return ChangeScreen(QudScreenCode.Factions);
-                }
-                // Quests
-                if (InputUtil.IsMouseEvent(input, "CmdMoveSW"))
-                {
-                    DrawSelected(Direction.SW);
-                    return ChangeScreen(QudScreenCode.Quests);
-                }
-                // Journal
-                if (InputUtil.IsMouseEvent(input, "CmdMoveW"))
-                {
-                    DrawSelected(Direction.W);
-                    return ChangeScreen(QudScreenCode.Journal);
-                }
-                // Tinkering
-                if (InputUtil.IsMouseEvent(input, "CmdMoveNW"))
-                {
-                    DrawSelected(Direction.NW);
-                    return ChangeScreen(QudScreenCode.Tinkering);
-                }
-                // Message History
-                if (InputUtil.IsMouseEvent(input, "CmdWait"))
-                {
-                    DrawSelected(Direction.M);
-                    return ChangeScreen(QudScreenCode.Message);
-                }
-                // Help
-                if (InputUtil.IsMouseEvent(input, "CmdHelp"))
-                {
-                    BookUI.ShowBook(Book.HELP);
-                }
+                Thread.Sleep(delay);
             }
+            Erase();
+            GameManager.Instance.PopGameView();
+            return selectedScreenCode;
         }
     }
 }

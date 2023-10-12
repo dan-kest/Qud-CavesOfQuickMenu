@@ -18,6 +18,7 @@ namespace CavesOfQuickMenu.Concepts
 
     public enum Direction
     {
+        None,
         M,
         N,
         NE,
@@ -27,5 +28,12 @@ namespace CavesOfQuickMenu.Concepts
         SW,
         W,
         NW,
+    }
+
+    public enum InputDevice
+    {
+        Keyboard,
+        Mouse,
+        Controller,
     }
 }
