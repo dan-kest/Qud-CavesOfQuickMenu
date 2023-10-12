@@ -6,7 +6,7 @@ using CavesOfQuickMenu.Concepts;
 using System.Collections.Generic;
 namespace XRL.UI
 {
-    [UIView(Screen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
+    [UIView(UIScreen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
     public class GeneralScreen : IWantsTextConsoleInit
     {
         private static TextConsole _textConsole;
@@ -150,8 +150,8 @@ namespace XRL.UI
                 switch (cmd)
                 {
                     case "CmdSystemMenu":
-                    case Command.OPEN_GENERAL:
-                    case Command.CLOSE:
+                    case QudCommand.OPEN_GENERAL:
+                    case QudCommand.CLOSE:
                     case "Cancel":
                         return SelectScreen(QudScreenCode.None);
                     case "CmdWait":
@@ -173,7 +173,7 @@ namespace XRL.UI
                     case "CmdMoveNW":
                         return SelectDirection(Direction.NW);
                     case "CmdHelp":
-                        BookUI.ShowBook(Book.HELP);
+                        BookUI.ShowBook(QudBook.HELP);
                         break;
                 }
 
@@ -216,14 +216,14 @@ namespace XRL.UI
 
         public static QudScreenCode Show()
         {
-            GameManager.Instance.PushGameView(Screen.GENERAL);
+            GameManager.Instance.PushGameView(UIScreen.GENERAL);
             TextConsole.LoadScrapBuffers();
             buffer = TextConsole.ScrapBuffer;
             bufferOld = TextConsole.ScrapBuffer2;
             ResetSelected();
             Draw();
             while (CheckingInput());
-            int delay = QudOptions.NextScreenDelay;
+            int delay = QudOption.NextScreenDelay;
             if (selectedScreenCode != QudScreenCode.None && selectedByDevice != InputDevice.Mouse && delay > 0)
             {
                 Thread.Sleep(delay);
