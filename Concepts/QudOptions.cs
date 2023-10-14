@@ -10,5 +10,6 @@ namespace CavesOfQuickMenu.Concepts
         }
 
         public static int NextScreenDelay => Convert.ToInt32(GetOption("Option_CavesOfQuickMenu_NextScreenDelay"));
+        public static float DeadzoneThreshold = 0.3f;
     }
 }

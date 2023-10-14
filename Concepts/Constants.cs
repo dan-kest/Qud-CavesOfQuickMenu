@@ -22,4 +22,11 @@ namespace CavesOfQuickMenu.Concepts
     {
         public const string GENERAL = "CavesOfQuickMenu:General";
     }
+
+    public static class QudKeyword
+    {
+        public const string STICK_DIR = "IndicateDirection";
+        public const string CLICK_LEFT = "LeftClick";
+        public const string CLICK_RIGHT = "RightClick";
+    }
 }
