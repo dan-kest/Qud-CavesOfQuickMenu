@@ -8,8 +8,7 @@ namespace CavesOfQuickMenu.Utilities
 {
     public static class InputUtil
     {
-        public static readonly BiDictionary<InputDevice, ControlManager.InputDeviceType> InputToInput
-                = new BiDictionary<InputDevice, ControlManager.InputDeviceType>()
+        public static readonly BiDictionary<InputDevice, ControlManager.InputDeviceType> InputToInput = new()
         {
             Data = new Dictionary<InputDevice, ControlManager.InputDeviceType>()
             {
@@ -52,6 +51,20 @@ namespace CavesOfQuickMenu.Utilities
         {
             Vector2 vector = CommandBindingManager.CommandBindings[stickType].ReadValue<Vector2>();
             return (vector.x, vector.y);
+        }
+
+        public static Direction GetStickDirection(string stickType)
+        {
+            if (CommandBindingManager.CommandBindings.ContainsKey(QudKeyword.STICK_DIR))
+            {
+                (float axisX, float axisY) = GetStickPosition(stickType);
+                if (IsStickInDeadzone(axisX, axisY))
+                {
+                    return Direction.M;
+                }
+                return AxisToDirection(axisX, axisY);
+            }
+            return Direction.None;
         }
     }
 }

@@ -1,9 +1,10 @@
 using System;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
 using ConsoleLib.Console;
 using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
-using System.Collections.Generic;
 namespace XRL.UI
 {
     [UIView(UIScreen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
@@ -21,7 +22,7 @@ namespace XRL.UI
         private static ControlManager.InputDeviceType inputDeviceTypePrev;
         private static float mouseXPrev, mouseYPrev;
 
-        public static readonly Dictionary<Direction, QudScreenCode> DirectionToScreenCode = new Dictionary<Direction, QudScreenCode>()
+        public static readonly Dictionary<Direction, QudScreenCode> DirectionToScreenCode = new()
         {
             { Direction.N, QudScreenCode.Skills },
             { Direction.NE, QudScreenCode.Character },
@@ -105,13 +106,21 @@ namespace XRL.UI
             }
         }
 
+        private static void EraseDirectionalDisplay()
+        {
+            if (GameManager.Instance.currentNavDirectionDisplay != null)
+            {
+                GameManager.Instance.currentNavDirectionDisplay.text = "";
+            }
+        }
+
         private static bool SelectScreen(QudScreenCode screenCode)
         {
             selectedScreenCode = screenCode;
             return false;
         }
 
-        private static bool SelectDirection(Direction direction, bool isConfirm = true)
+        private static bool SelectDirection(Direction direction, bool isConfirm = true, bool isSelect = true)
         {
             if (DirectionToScreenCode.ContainsKey(direction))
             {
@@ -119,8 +128,11 @@ namespace XRL.UI
                 {
                     DrawSelected(selectedDirectionPrev, false);
                 }
-                selectedDirectionPrev = selectedDirection;
-                selectedDirection = direction;
+                if (isSelect)
+                {
+                    selectedDirectionPrev = selectedDirection;
+                    selectedDirection = direction;
+                }
                 if (selectedDirection != selectedDirectionPrev && selectedDirection != Direction.None)
                 {
                     DrawSelected(selectedDirection);
@@ -133,7 +145,7 @@ namespace XRL.UI
             return true;
         }
 
-        private static void CheckInputDevice(bool hasMouseEvent)
+        private static void CheckInputDevice(bool hasMouseEvent, string @event)
         {
             ControlManager.InputDeviceType inputDeviceType = ControlManager.activeControllerType;
             InputDevice activeDeviceTemp = activeDevice;
@@ -149,8 +161,10 @@ namespace XRL.UI
             mouseXPrev = mouseX;
             mouseYPrev = mouseY;
 
-            string @event = hasMouseEvent ? Keyboard.CurrentMouseEvent.Event : "";
-            if (inputDeviceType != inputDeviceTypePrev || (hasMouseEvent && @event != QudKeyword.CLICK_LEFT))
+            Direction stickDirection = InputUtil.GetStickDirection(QudKeyword.STICK_DIR);
+            bool hasStickMovement = stickDirection != Direction.None && stickDirection != Direction.M;
+            bool isNotCursorEvent = !QudKeyword.CURSOR_EVENTS.Contains(@event);
+            if (inputDeviceType != inputDeviceTypePrev || hasStickMovement || (hasMouseEvent && isNotCursorEvent))
             {
                 bool isKeyboard = inputDeviceType == ControlManager.InputDeviceType.Keyboard;
                 bool isGamepad = inputDeviceType == ControlManager.InputDeviceType.Gamepad;
@@ -158,56 +172,39 @@ namespace XRL.UI
                 {
                     activeDevice = InputUtil.InputToInput[inputDeviceType];
                 }
+                inputDeviceTypePrev = inputDeviceType;
             }
             activeDevicePrev = activeDeviceTemp;
-            inputDeviceTypePrev = inputDeviceType;
         }
 
         private static bool CheckingInput()
         {
             Keys input = Keyboard.getvk(false, false, false);
             bool hasMouseEvent = input == Keys.MouseEvent && Keyboard.CurrentMouseEvent.Event != null;
+            string @event = hasMouseEvent ? Keyboard.CurrentMouseEvent.Event : "";
 
-            CheckInputDevice(hasMouseEvent);
+            CheckInputDevice(hasMouseEvent, @event);
 
             // Gamepad
             if (activeDevice == InputDevice.Gamepad)
             {
-                if (CommandBindingManager.CommandBindings.ContainsKey(QudKeyword.STICK_DIR))
+                Direction stickDirection = InputUtil.GetStickDirection(QudKeyword.STICK_DIR);
+                if (stickDirection != Direction.None)
                 {
-                    if (GameManager.Instance.currentNavDirectionDisplay != null)
-                    {
-                        GameManager.Instance.currentNavDirectionDisplay.text = "";
-                    }
-                    (float axisX, float axisY) = InputUtil.GetStickPosition(QudKeyword.STICK_DIR);
-                    Direction stickDirection = Direction.M;
-                    if (!InputUtil.IsStickInDeadzone(axisX, axisY))
-                    {
-                        stickDirection = InputUtil.AxisToDirection(axisX, axisY);
-                    }
-                    SelectDirection(stickDirection, false);
-                    if (hasMouseEvent)
-                    {
-                        string @event = Keyboard.CurrentMouseEvent.Event;
-                        UnityEngine.Debug.LogError($"CONTROLLER EVENT :: {@event}");
-                    }
+                    EraseDirectionalDisplay();
+                    SelectDirection(stickDirection, false); // TODO:
+                    UnityEngine.Debug.LogError($"CONTROLLER EVENT :: {@event}");
                 }
             }
-            else
+            else if (activeDevicePrev == InputDevice.Gamepad)
             {
-                SelectDirection(selectedDirection, false);
+                SelectDirection(Direction.None, false);
             }
 
             if (hasMouseEvent)
             {
-                string @event = Keyboard.CurrentMouseEvent.Event;
-
                 // Keyboard & Gamepad
-                string cmd = null;
-                if (@event.StartsWith("Command:"))
-                {
-                    cmd = @event.Split(":")[1];
-                }
+                string cmd = @event.StartsWith("Command:") ? @event.Split(":")[1] : null;
                 switch (cmd)
                 {
                     case "CmdMoveN":
@@ -247,7 +244,7 @@ namespace XRL.UI
                     }
                     if (activeDevicePrev != InputDevice.Mouse)
                     {
-                        SelectDirection(Direction.None);
+                        SelectDirection(Direction.None, false);
                     }
                     int x = Keyboard.CurrentMouseEvent.x;
                     int y = Keyboard.CurrentMouseEvent.y;
@@ -265,7 +262,7 @@ namespace XRL.UI
                                     activeDevice = InputDevice.Mouse;
                                     return SelectDirection(direction);
                                 }
-                                SelectDirection(direction);
+                                SelectDirection(direction, false);
                                 break;
                             }
                         }
@@ -276,10 +273,12 @@ namespace XRL.UI
                     }
                 }
             }
-            else if (activeDevice == InputDevice.Keyboard)
+            
+            if (activeDevice == InputDevice.Keyboard && activeDevicePrev != InputDevice.Keyboard)
             {
-                SelectDirection(Direction.None);
+                SelectDirection(Direction.None, false, false);
             }
+
             return true;
         }
 

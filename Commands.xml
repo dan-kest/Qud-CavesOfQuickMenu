@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <commands>
   <command ID="Cmd_CavesOfQuickMenu_OpenGeneral" DisplayText="Open Quick Menu" Category="Quick Menu" Layer="Adventure" Auto="DownPass"></command>
-  <command ID="Cmd_CavesOfQuickMenu_Close" DisplayText="Close Quick Menu" Category="Quick Menu" Layer="Adventure" Auto="DownPass"></command>
+  <command ID="Cmd_CavesOfQuickMenu_Close" DisplayText="Close Quick Menu" Category="Quick Menu" Layer="Adventure" Auto="DownPass">
+    <gamepadBind Button="buttonEast"/>
+  </command>
 </commands>

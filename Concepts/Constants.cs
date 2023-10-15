@@ -28,5 +28,11 @@ namespace CavesOfQuickMenu.Concepts
         public const string STICK_DIR = "IndicateDirection";
         public const string CLICK_LEFT = "LeftClick";
         public const string CLICK_RIGHT = "RightClick";
+        public const string CURSOR_MOVE = "PointerOver";
+        
+        public static readonly string[] CURSOR_EVENTS =
+        {
+            CLICK_LEFT, CLICK_RIGHT, CURSOR_MOVE
+        };
     }
 }
