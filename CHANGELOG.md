@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.100.3] - 2023/10/15
+#### New
+- Add mouse support.
+- Add UI feedback for controller.
+
 ## [0.100.2] - 2023/10/10
 #### Fix
 - Fixed an issue with keybinds and Domination mutation.
