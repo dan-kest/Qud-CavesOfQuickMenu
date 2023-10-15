@@ -30,7 +30,7 @@ namespace CavesOfQuickMenu.Utilities
             }
             double angleDegree = 180.0f * angleRadian / Math.PI;
             double inputDegree = angleDegree + inputSectorAngleOffset;
-            return (Direction) Math.Floor(inputDegree / inputSectorAngle);
+            return (Direction) (((int) Math.Floor(inputDegree / inputSectorAngle)) % 8);
         }
 
         public static bool IsStickInDeadzone(float axisX, float axisY)
