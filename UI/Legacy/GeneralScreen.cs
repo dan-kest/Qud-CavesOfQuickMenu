@@ -106,14 +106,6 @@ namespace XRL.UI
             }
         }
 
-        private static void EraseDirectionalDisplay()
-        {
-            if (GameManager.Instance.currentNavDirectionDisplay != null)
-            {
-                GameManager.Instance.currentNavDirectionDisplay.text = "";
-            }
-        }
-
         private static bool SelectScreen(QudScreenCode screenCode)
         {
             selectedScreenCode = screenCode;
@@ -191,9 +183,7 @@ namespace XRL.UI
                 Direction stickDirection = InputUtil.GetStickDirection(QudKeyword.STICK_DIR);
                 if (stickDirection != Direction.None)
                 {
-                    EraseDirectionalDisplay();
-                    SelectDirection(stickDirection, false); // TODO:
-                    UnityEngine.Debug.LogError($"CONTROLLER EVENT :: {@event}");
+                    SelectDirection(stickDirection, false);
                 }
             }
             else if (activeDevicePrev == InputDevice.Gamepad)
