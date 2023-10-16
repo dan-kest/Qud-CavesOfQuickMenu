@@ -7,19 +7,25 @@ namespace CavesOfQuickMenu.Concepts
         public const string GENERAL_LEGACY_SELECTED = GENERAL + "/Legacy_{0}/Slice {1}.png";
     }
 
-    public static class Book
+    public static class QudBook
     {
         public const string HELP = "Book_CavesOfQuickMenu_Help";
     }
 
-    public static class Command
+    public static class QudCommand
     {
         public const string OPEN_GENERAL = "Cmd_CavesOfQuickMenu_OpenGeneral";
         public const string CLOSE = "Cmd_CavesOfQuickMenu_Close";
     }
 
-    public static class Screen
+    public static class UIScreen
     {
         public const string GENERAL = "CavesOfQuickMenu:General";
+    }
+
+    public static class QudKeyword
+    {
+        public const string CLICK_LEFT = "LeftClick";
+        public const string CLICK_RIGHT = "RightClick";
     }
 }

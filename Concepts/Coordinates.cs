@@ -4,6 +4,13 @@ namespace CavesOfQuickMenu.Concepts
 {
     public static class LegacyCoord
     {
+        public const int OFFSET_X = 23;
+        public const int OFFSET_Y = 1;
+        public const int HEIGHT = 20;
+        public const int WIDTH = 32;
+        public const int HEIGHT_SELECTED = 5;
+        public const int WIDTH_SELECTED = 8;
+
         /// <summary>
         /// Return 4 int represent 2 sets of coordinate for quick menu screen region.<br/>
         /// <code>
