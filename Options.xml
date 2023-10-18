@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <options>
-  <option ID="Option_CavesOfQuickMenu_NextScreenDelay" DisplayText="Highlight Time (ms)  *Low value can cause input leak to next screen. Default value (100 ms) is highly recommended." Category="Quick Menu" Type="Combo" Values="0,50,100,150,200,250,300,350,400,450,500" Default="100"></option>
+  <option ID="Option_CavesOfQuickMenu_NextScreenDelay" DisplayText="Screen switch delay (ms) **Low value may cause input leak**" Category="Quick Menu" Type="Combo" Values="0,25,50,75,100,125,150,175,200,225,250,275,300" Default="125"></option>
 </options>

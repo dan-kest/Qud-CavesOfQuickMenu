@@ -1,9 +1,13 @@
 # Changelog
 
+## [0.100.4] - 2023/10/18
+#### Fix
+- Fixed gamepad issue with selecting middle box with Take A Step key.
+
 ## [0.100.3] - 2023/10/15
 #### New
-- Add mouse support.
-- Add UI feedback for controller.
+- Added mouse support.
+- Added UI feedback for controller.
 
 ## [0.100.2] - 2023/10/10
 #### Fix
@@ -17,13 +21,13 @@
 #### Fix
 - Fixed main functionality for **2.0.206.3 (beta - 7th plague beta)** patch onward.
 #### Change
-- Droped support for previous game version on **main** branch, will support legacy version on **legacy** branch.
+- Dropped support for previous game version on **main** branch, will support legacy version on **legacy** branch.
 #### Remove
 - Removed alternate menu navigation with modifier keys (might re-implement later).
 
 ## [0.99.2] - 2021/12/20
 #### Fix
-- Revert change to stable branch compatibility issue in d006a3.
+- Reverted changes to stable branch compatibility issue in d006a3.
 
 ## [0.99.1-hotfix.0] - 2021/09/15
 #### Hotifx
