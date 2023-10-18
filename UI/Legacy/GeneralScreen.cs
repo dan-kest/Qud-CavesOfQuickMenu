@@ -183,6 +183,10 @@ namespace XRL.UI
                 Direction stickDirection = InputUtil.GetStickDirection(QudKeyword.STICK_DIR);
                 if (stickDirection != Direction.None)
                 {
+                    if (stickDirection == Direction.M && Keyboard.RawCode == Keys.NumPad5)
+                    {
+                        return SelectDirection(stickDirection);
+                    }
                     SelectDirection(stickDirection, false);
                 }
             }
