@@ -7,7 +7,7 @@ using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
 namespace XRL.UI
 {
-    [UIView(UIScreen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
+    [UIView(UIScreen.GENERAL, true, true, false, "Adventure", null, false, 0, true)]
     public class GeneralScreen : IWantsTextConsoleInit
     {
         private static TextConsole _textConsole;
