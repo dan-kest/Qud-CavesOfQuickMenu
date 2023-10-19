@@ -43,6 +43,14 @@ namespace XRL.UI
             (baseX1, baseY1, baseX2, baseY2) = LegacyCoord.GetBaseCoord();
 		}
 
+        private static void SetAttribute()
+        {
+            GameManager.ViewInfo viewInfo = GameManager.Instance.GetViewData(UIScreen.GENERAL);
+            bool isForceFullscreen = QudOption.IsForceFullscreen;
+            viewInfo.ForceFullscreen = isForceFullscreen;
+            viewInfo.ForceFullscreenInLegacy = isForceFullscreen;
+        }
+
         private static void ResetState()
         {
             selectedDirection = selectedDirectionPrev = Direction.None;
@@ -267,7 +275,7 @@ namespace XRL.UI
                     }
                 }
             }
-            
+
             if (activeDevice == InputDevice.Keyboard && activeDevicePrev != InputDevice.Keyboard)
             {
                 SelectDirection(Direction.None, false, false);
@@ -278,6 +286,7 @@ namespace XRL.UI
 
         public static QudScreenCode Show()
         {
+            SetAttribute();
             GameManager.Instance.PushGameView(UIScreen.GENERAL);
             TextConsole.LoadScrapBuffers();
             buffer = TextConsole.ScrapBuffer;
