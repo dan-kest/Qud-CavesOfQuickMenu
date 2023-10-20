@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.5] - 2023/10/20
+#### New
+- Added Force fullscreen option so the mod is usable when zoomed in.
+
 ## [0.100.4] - 2023/10/18
 #### Fix
 - Fixed gamepad issue with selecting middle box with Take A Step key.
