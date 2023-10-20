@@ -46,7 +46,7 @@ namespace XRL.UI
         private static void SetAttribute()
         {
             GameManager.ViewInfo viewInfo = GameManager.Instance.GetViewData(UIScreen.GENERAL);
-            viewInfo.ForceFullscreen = QudOption.IsForceFullscreen;
+            viewInfo.ForceFullscreen = Options.ModernUI && QudOption.IsForceFullscreen;
         }
 
         private static void ResetState()
@@ -284,10 +284,7 @@ namespace XRL.UI
 
         public static QudScreenCode Show()
         {
-            if (Options.ModernUI)
-            {
-                SetAttribute();
-            }
+            SetAttribute();
             GameManager.Instance.PushGameView(UIScreen.GENERAL);
             TextConsole.LoadScrapBuffers();
             buffer = TextConsole.ScrapBuffer;

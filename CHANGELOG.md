@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.6] - 2023/10/20
+#### Fix
+- Fixed fullscreen issue, game now properly prevent legacy UI to force fullscreen.
+
 ## [0.100.5] - 2023/10/20
 #### New
 - Added Force fullscreen option so the mod is usable when zoomed in.
