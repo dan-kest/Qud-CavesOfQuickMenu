@@ -7,7 +7,7 @@ using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
 namespace XRL.UI
 {
-    [UIView(UIScreen.GENERAL, true, true, false, "Adventure", null, false, 0, true)]
+    [UIView(UIScreen.GENERAL, true, false, false, "Adventure", null, false, 0, false)]
     public class GeneralScreen : IWantsTextConsoleInit
     {
         private static TextConsole _textConsole;
@@ -46,9 +46,7 @@ namespace XRL.UI
         private static void SetAttribute()
         {
             GameManager.ViewInfo viewInfo = GameManager.Instance.GetViewData(UIScreen.GENERAL);
-            bool isForceFullscreen = QudOption.IsForceFullscreen;
-            viewInfo.ForceFullscreen = isForceFullscreen;
-            viewInfo.ForceFullscreenInLegacy = isForceFullscreen;
+            viewInfo.ForceFullscreen = QudOption.IsForceFullscreen;
         }
 
         private static void ResetState()
@@ -286,7 +284,10 @@ namespace XRL.UI
 
         public static QudScreenCode Show()
         {
-            SetAttribute();
+            if (Options.ModernUI)
+            {
+                SetAttribute();
+            }
             GameManager.Instance.PushGameView(UIScreen.GENERAL);
             TextConsole.LoadScrapBuffers();
             buffer = TextConsole.ScrapBuffer;
