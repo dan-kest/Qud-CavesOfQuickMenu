@@ -31,19 +31,19 @@ namespace XRL.World.Parts
                     The.Game.Player.Messages.Show();
                 }
                 // Abilities
-                else if (screenCode == QudScreenCode.Abilities)
-                {
-                    string command = AbilityManager.Show(The.Player);
-                    if (!string.IsNullOrEmpty(command))
-                    {
-                        CommandEvent.Send(The.Player, command);
-                    }
-                }
+                // else if (screenCode == QudScreenCode.Abilities)
+                // {
+                //     string command = AbilityManager.Show(The.Player);
+                //     if (!string.IsNullOrEmpty(command))
+                //     {
+                //         CommandEvent.Send(The.Player, command);
+                //     }
+                // }
                 // Active Effects
-                else if (screenCode == QudScreenCode.Effects)
-                {
-                    The.Player.ShowActiveEffects();
-                }
+                // else if (screenCode == QudScreenCode.Effects)
+                // {
+                //     The.Player.ShowActiveEffects();
+                // }
             }
             return base.FireEvent(e);
         }
