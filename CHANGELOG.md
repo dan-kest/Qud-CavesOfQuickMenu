@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.7] - 2024/02/27
+#### Fix
+- Fixed world map issue.
+
 ## [0.100.6] - 2023/10/20
 #### Fix
 - Fixed fullscreen issue, game now properly prevent legacy UI to force fullscreen.
