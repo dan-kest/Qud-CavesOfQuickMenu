@@ -11,6 +11,7 @@ namespace CavesOfQuickMenu.Handlers
         public void mutate(GameObject player)
         {
             player.AddPart<CommandListener>();
+            Hacks.ForceEnableAbility();
         }
     }
 
@@ -24,6 +25,7 @@ namespace CavesOfQuickMenu.Handlers
             if (player != null)
             {
                 player.RequirePart<CommandListener>();
+                Hacks.ForceEnableAbility();
             }
         }
     }
