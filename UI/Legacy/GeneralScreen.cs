@@ -231,7 +231,7 @@ namespace XRL.UI
                     case "Cancel":
                         return SelectScreen(QudScreenCode.None);
                     case "CmdHelp":
-                        BookUI.ShowBook(QudBook.HELP);
+                        BookUI.ShowBookByID(QudBook.HELP);
                         break;
                 }
 

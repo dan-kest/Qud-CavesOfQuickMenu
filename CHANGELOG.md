@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.8] - 2024/06/10
+#### Fix
+- Fixed BookUI issue.
+
 ## [0.100.7] - 2024/02/27
 #### Fix
 - Fixed world map issue.
