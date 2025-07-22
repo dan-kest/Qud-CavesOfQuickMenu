@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.9] - 2025/07/22
+#### Fix
+- Fixed input issue, especially for mouse.
+
 ## [0.100.8] - 2024/06/10
 #### Fix
 - Fixed BookUI issue.

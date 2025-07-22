@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Collections.Generic;
-using System.Linq;
 using ConsoleLib.Console;
 using CavesOfQuickMenu.Utilities;
 using CavesOfQuickMenu.Concepts;
@@ -151,7 +150,7 @@ namespace XRL.UI
             (float mouseX, float mouseY) = InputUtil.GetMousePosition();
             if (activeDevice != InputDevice.Mouse)
             {
-                if (mouseXPrev != mouseX || mouseYPrev != mouseY)
+                if (mouseXPrev != mouseX || mouseYPrev != mouseY || InputUtil.IsMouseAny())
                 {
                     activeDevice = InputDevice.Mouse;
                 }
@@ -161,8 +160,7 @@ namespace XRL.UI
 
             Direction stickDirection = InputUtil.GetStickDirection(QudKeyword.STICK_DIR);
             bool hasStickMovement = stickDirection != Direction.None && stickDirection != Direction.M;
-            bool isNotCursorEvent = !QudKeyword.CURSOR_EVENTS.Contains(@event);
-            if (inputDeviceType != inputDeviceTypePrev || hasStickMovement || (hasMouseEvent && isNotCursorEvent))
+            if (inputDeviceType != inputDeviceTypePrev || hasStickMovement || hasMouseEvent)
             {
                 bool isKeyboard = inputDeviceType == ControlManager.InputDeviceType.Keyboard;
                 bool isGamepad = inputDeviceType == ControlManager.InputDeviceType.Gamepad;
@@ -234,20 +232,22 @@ namespace XRL.UI
                         BookUI.ShowBookByID(QudBook.HELP);
                         break;
                 }
+            }
 
-                // Mouse
-                if (activeDevice == InputDevice.Mouse && Options.MouseInput)
+            // Mouse
+            if (activeDevice == InputDevice.Mouse && Options.MouseInput)
+            {
+                if (InputUtil.IsMouseRight())
                 {
-                    if (@event == QudKeyword.CLICK_RIGHT)
-                    {
-                        return SelectScreen(QudScreenCode.None);
-                    }
-                    if (activeDevicePrev != InputDevice.Mouse)
-                    {
-                        SelectDirection(Direction.None, false);
-                    }
-                    int x = Keyboard.CurrentMouseEvent.x;
-                    int y = Keyboard.CurrentMouseEvent.y;
+                    return SelectScreen(QudScreenCode.None);
+                }
+                if (activeDevicePrev != InputDevice.Mouse)
+                {
+                    SelectDirection(Direction.None, false);
+                }
+                (int x, int y) = InputUtil.GetTilePositionOnMouse();
+                if (x > -1 && y > -1)
+                {
                     bool isHover = false;
                     foreach (Direction direction in Enum.GetValues(typeof(Direction)))
                     {
@@ -257,7 +257,7 @@ namespace XRL.UI
                             if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
                             {
                                 isHover = true;
-                                if (@event == QudKeyword.CLICK_LEFT)
+                                if (InputUtil.IsMouseLeft())
                                 {
                                     activeDevice = InputDevice.Mouse;
                                     return SelectDirection(direction);
@@ -293,12 +293,11 @@ namespace XRL.UI
             Draw();
             while (CheckingInput())
             {
-                Thread.Sleep(10);
-            };
-            int delay = QudOption.NextScreenDelay;
-            if (selectedScreenCode != QudScreenCode.None && activeDevice != InputDevice.Mouse && delay > 0)
+                Thread.Sleep(QudOption.InputInterval);
+            }
+            while (InputUtil.IsAnyInput())
             {
-                Thread.Sleep(delay);
+                Thread.Sleep(QudOption.InputInterval);
             }
             Erase();
             GameManager.Instance.PopGameView();

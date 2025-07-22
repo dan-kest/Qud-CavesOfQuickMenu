@@ -10,7 +10,7 @@ namespace CavesOfQuickMenu.Concepts
         }
 
         public static bool IsForceFullscreen => GetOption("Option_CavesOfQuickMenu_IsForceFullscreen").EqualsNoCase("Yes");
-        public static int NextScreenDelay => Convert.ToInt32(GetOption("Option_CavesOfQuickMenu_NextScreenDelay"));
         public static float DeadzoneThreshold = 0.4f;
+        public static int InputInterval = 10;
     }
 }
