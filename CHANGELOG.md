@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.100.10] - 2025/07/23
+#### New
+- Added a customizable timeout to wait for input release.
+
 ## [0.100.9] - 2025/07/22
 #### Fix
 - Fixed input issue, especially for mouse.

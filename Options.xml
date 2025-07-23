@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <options>
   <option ID="Option_CavesOfQuickMenu_IsForceFullscreen" DisplayText="Force fullscreen (leaving enabled recommended)" Category="Quick Menu" Type="Checkbox" Default="Yes"></option>
+  <option ID="Option_CavesOfQuickMenu_WaitInputReleaseTimeout" DisplayText="Wait for input release timeout (ms) (below 300 not recommended)" Category="Quick Menu" Type="Combo" Values="0,50,100,200,300,400,500,1000" Default="400"></option>
 </options>

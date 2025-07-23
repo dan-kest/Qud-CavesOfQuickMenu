@@ -295,9 +295,11 @@ namespace XRL.UI
             {
                 Thread.Sleep(QudOption.InputInterval);
             }
-            while (InputUtil.IsAnyInput())
+            int waitTime = 0;
+            while (InputUtil.IsAnyInput() && waitTime < QudOption.WaitInputReleaseTimeout)
             {
                 Thread.Sleep(QudOption.InputInterval);
+                waitTime += QudOption.InputInterval;
             }
             Erase();
             GameManager.Instance.PopGameView();
